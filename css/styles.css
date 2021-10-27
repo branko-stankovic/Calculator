@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.calculator {
+    width: 500px;
+    height: 650px;
+    background-color: #1f1f1f;
+    margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+    .calculator {
+        width: 100vw;
+        height: 100vh;
+    }
+}
