@@ -16,6 +16,7 @@ body {
     height: 650px;
     background-color: #1f1f1f;
     margin: 0 auto;
+    border-radius: 20px;
 }
 
 @media (max-width: 576px) {
@@ -23,4 +24,13 @@ body {
         width: 100vw;
         height: 100vh;
     }
+}
+
+.screen {
+    background-color: #9DC209;
+    width: 80%;
+    height: 16%;
+    margin-top: 10%;
+    border-radius: 10px;
+    margin: 10% auto 0;
 }
