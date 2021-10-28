@@ -53,11 +53,3 @@ body {
     width: 22px;
     height: 22px;
 }
-
-.screen {
-    background-color: #9DC209;
-    width: 80%;
-    height: 16%;
-    margin-top: 10%;
-    border-radius: 10px;
-}
