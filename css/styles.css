@@ -68,3 +68,12 @@ img.icon {
     background-color: #dedede;
     border-radius: 3px;
 }
+
+.menu {
+    height: 25px;
+    font-size: 18px;
+}
+
+.menu span {
+    padding: 0 5px;
+}
