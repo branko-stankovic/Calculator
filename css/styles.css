@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
 }
 
 body {
@@ -42,6 +42,12 @@ body {
 .title {
     color: white;
     font-size: 18px;
+}
+
+img.icon {
+    height: 22px;
+    position: relative;
+    top: 3px;
 }
 
 .icons {
