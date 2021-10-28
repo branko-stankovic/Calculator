@@ -72,8 +72,22 @@ img.icon {
 .menu {
     height: 25px;
     font-size: 18px;
+    padding-top: 3px;
 }
 
 .menu span {
     padding: 0 5px;
+}
+
+.screen {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.screen input {
+    width: 404px;
+    outline: 1px solid black;
 }
