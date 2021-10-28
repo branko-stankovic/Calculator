@@ -95,6 +95,17 @@ img.icon {
     font-family: inherit;
     font-size: inherit;
     text-align: right;
+    background-color: white;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 .buttons {
@@ -104,4 +115,22 @@ img.icon {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+button {
+    height: 45px;
+    flex-grow: 1;
+    max-width: 122px;
+    min-width: 56px;
+    color: #004e98;
+}
+
+#backspace, #ce, #divide, #multiply, #minus, #plus, #equals {
+    color: red;
 }
