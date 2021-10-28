@@ -41,7 +41,9 @@ body {
 
 .title {
     color: white;
-    font-size: 18px;
+    font-size: 19px;
+    position: relative;
+    bottom: 3px;
 }
 
 img.icon {
@@ -56,6 +58,13 @@ img.icon {
 }
 
 .icons span {
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
+}
+
+.container {
+    width: 430px;
+    height: 395px;
+    background-color: #dedede;
+    border-radius: 3px;
 }
