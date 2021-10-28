@@ -39,6 +39,7 @@ body {
     padding: 3px;
     display: flex;
     justify-content: space-between;
+    cursor: default;
 }
 
 .title {
@@ -79,6 +80,7 @@ img.icon {
 
 .menu span {
     padding: 0 5px;
+    cursor: pointer;
 }
 
 .screen {
@@ -96,6 +98,7 @@ img.icon {
     font-size: inherit;
     text-align: right;
     background-color: white;
+    font-weight: bold;
 }
 
 input[type=number]::-webkit-outer-spin-button,
@@ -129,6 +132,7 @@ button {
     max-width: 122px;
     min-width: 56px;
     color: #004e98;
+    font-size: inherit;
 }
 
 #backspace, #ce, #divide, #multiply, #minus, #plus, #equals {
