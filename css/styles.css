@@ -90,4 +90,7 @@ img.icon {
 .screen input {
     width: 404px;
     outline: 1px solid black;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: right;
 }
