@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    /* outline: 1px solid red; */
+    outline: 1px solid red;
 }
 
 body {
@@ -93,4 +93,13 @@ img.icon {
     font-family: inherit;
     font-size: inherit;
     text-align: right;
+}
+
+.buttons {
+    width: 250px;
+    height: 270px;
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
