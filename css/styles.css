@@ -65,6 +65,10 @@ img.icon {
     height: 25px;
 }
 
+.menu span:hover {
+    background-color: #c7c7c7;
+}
+
 .container {
     width: 430px;
     height: 395px;
