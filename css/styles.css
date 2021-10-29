@@ -65,8 +65,18 @@ img.icon {
     height: 25px;
 }
 
-.menu span:hover {
+.icons span:hover {
     background-color: #c7c7c7;
+}
+
+.exit {
+    background-image: url("../img/Windows-Close-Program-icon.png");
+    background-position: center;
+    border-radius: 3px;
+}
+
+.exit:hover {
+    outline: 1px solid white;
 }
 
 .container {
