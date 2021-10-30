@@ -39,7 +39,7 @@ function handleInput(input) {
 }
 
 buttons.forEach(button => button.addEventListener('click', function(e) {
-    handleInput(e.target.id);
+    handleInput(e.target.innerText);
 }));
 
 document.addEventListener('keypress', function(e) {
