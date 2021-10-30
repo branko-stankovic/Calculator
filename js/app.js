@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll('.buttons button');
+const screen = document.querySelector('.screen input').value;
 
 function add(a, b) {
     return a + b;
