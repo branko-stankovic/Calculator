@@ -1,3 +1,5 @@
+const buttons = document.querySelectorAll('.buttons button');
+
 function add(a, b) {
     return a + b;
 }
@@ -31,3 +33,15 @@ function operate(a, operator, b) {
             return null;
     }
 }
+
+function handleInput(input) {
+    console.log(input);
+}
+
+buttons.forEach(button => button.addEventListener('click', function(e) {
+    handleInput(e.target.id);
+}));
+
+document.addEventListener('keypress', function(e) {
+    handleInput(e.key);
+});
