@@ -30,8 +30,8 @@ function operate(a, operator, b) {
             return subtract(a, b);
         case "*":
             return multiply(a, b);
-        case ":":
-            if (a === 0) {
+        case "/":
+            if (b === 0) {
                 return undefined;
             }
             return divide(a, b);
@@ -46,6 +46,10 @@ function handleInput(input) {
     if (input == "Enter" || input == "=") {
         if (firstOperand && secondOperand && currentOperator) {
             let result = operate(+firstOperand, currentOperator, +secondOperand);
+            if (!result) {
+                console.log("ERROR");
+                return;
+            }
             firstOperand = result;
             screen.value = result;
             currentOperator = undefined;
@@ -69,6 +73,14 @@ function handleInput(input) {
         secondOperand = '';
         currentOperator = '';
         screen.value = '0';
+    } else if (input == "Backspace") {
+        if (!currentOperator && firstOperand) {
+            firstOperand = firstOperand.slice(0, -1);
+            screen.value = firstOperand;
+        } else if (secondOperand) {
+            secondOperand = secondOperand.slice(0, -1);
+            screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
+        }
     }
 }
 
