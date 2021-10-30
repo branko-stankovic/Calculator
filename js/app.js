@@ -1,6 +1,11 @@
 const buttons = document.querySelectorAll('.buttons button');
 const screen = document.querySelector('.screen input').value;
 
+let firstOperand = '';
+let secondOperand = '';
+let currentOperator;
+let decimal = false;
+
 function add(a, b) {
     return a + b;
 }
