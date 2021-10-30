@@ -1,9 +1,9 @@
 const buttons = document.querySelectorAll('.buttons button');
-const screen = document.querySelector('.screen input').value;
+let screen = document.querySelector('.screen input');
 
 let firstOperand = '';
 let secondOperand = '';
-let currentOperator;
+let currentOperator = '';
 let decimal = false;
 
 function add(a, b) {
@@ -42,12 +42,24 @@ function operate(a, operator, b) {
 
 function handleInput(input) {
     console.log(input);
+
+    if (input == "Enter" || input == "=") {
+        if (firstOperand && secondOperand && currentOperator) {
+            let result = operate(+firstOperand, currentOperator, +secondOperand);
+            firstOperand = result;
+            screen.value = result;
+            currentOperator = undefined;
+            secondOperand = '';
+        } else {
+            return;
+        }
+    }
 }
 
 buttons.forEach(button => button.addEventListener('click', function(e) {
     handleInput(e.target.innerText);
 }));
 
-document.addEventListener('keypress', function(e) {
-    handleInput(e.key);
-});
+// document.addEventListener('keypress', function(e) {
+//     handleInput(e.key);
+// });
