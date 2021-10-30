@@ -41,7 +41,7 @@ function operate(a, operator, b) {
 }
 
 function handleInput(input) {
-    console.log(input);
+    // console.log(input);
 
     if (input == "Enter" || input == "=") {
         if (firstOperand && secondOperand && currentOperator) {
@@ -52,6 +52,11 @@ function handleInput(input) {
             secondOperand = '';
         } else {
             return;
+        }
+    } else if (/[0-9]/.test(input)) {
+        if (!currentOperator) {
+            firstOperand += input;
+            screen.value = firstOperand;
         }
     }
 }
