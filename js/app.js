@@ -57,6 +57,9 @@ function handleInput(input) {
         if (!currentOperator) {
             firstOperand += input;
             screen.value = firstOperand;
+        } else {
+            secondOperand += input;
+            screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
         }
     }
 }
