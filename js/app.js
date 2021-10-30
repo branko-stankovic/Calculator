@@ -61,6 +61,14 @@ function handleInput(input) {
             secondOperand += input;
             screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
         }
+    } else if (/[+-/*]/.test(input) && firstOperand) {
+        currentOperator = input;
+        screen.value = firstOperand + " " + currentOperator;
+    } else if (input == "CE") {
+        firstOperand = '';
+        secondOperand = '';
+        currentOperator = '';
+        screen.value = '0';
     }
 }
 
@@ -68,6 +76,8 @@ buttons.forEach(button => button.addEventListener('click', function(e) {
     handleInput(e.target.innerText);
 }));
 
-// document.addEventListener('keypress', function(e) {
-//     handleInput(e.key);
-// });
+/*
+document.addEventListener('keypress', function(e) {
+    handleInput(e.key);
+});
+*/
