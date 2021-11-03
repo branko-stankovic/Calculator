@@ -61,22 +61,45 @@ img.icon {
 }
 
 .icons span {
-    width: 25px;
-    height: 25px;
-}
-
-.icons span:hover {
-    background-color: #c7c7c7;
-}
-
-.exit {
-    background-image: url("../img/Windows-Close-Program-icon.png");
-    background-position: center;
+    width: 26px;
+    height: 26px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+    background-color: #004f98;
+    outline: 2px solid #034583;
     border-radius: 3px;
 }
 
-.exit:hover {
-    outline: 1px solid white;
+.icons span:hover {
+    outline-color: #c7c7c7;
+}
+
+span.exit {
+    background-color: red;
+}
+
+span.exit::before {
+    display: inline-block;
+    content: "";
+    height: 20px;
+    width: 5px;
+    background-color: white;
+    transform: rotate(-45deg);
+    position: relative;
+    top: 3px;
+    left: 10px;
+}
+
+span.exit::after {
+    display: inline-block;
+    content: "";
+    height: 20px;
+    width: 5px;
+    background-color: white;
+    transform: rotate(45deg);
+    position: relative;
+    top: 3px;
+    left: 5px;
 }
 
 .container {
