@@ -41,8 +41,6 @@ function operate(a, operator, b) {
 }
 
 function handleInput(input) {
-    // console.log(input);
-
     if (input == "Enter" || input == "=") {
         if (firstOperand && secondOperand && currentOperator) {
             let result = operate(+firstOperand, currentOperator, +secondOperand);
@@ -81,15 +79,21 @@ function handleInput(input) {
             secondOperand = secondOperand.slice(0, -1);
             screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
         }
-    }
+    }// else if (input == ".") {
+    //     if (!currentOperator && firstOperand && !firstOperand.includes(input)) {
+    //         firstOperand += input;
+    //         screen.value = firstOperand;
+    //     } else if (secondOperand && !secondOperand.includes(input)) {
+    //         secondOperand += input;
+    //         screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
+    //     }
+    // }
 }
 
 buttons.forEach(button => button.addEventListener('click', function(e) {
     handleInput(e.target.innerText);
 }));
 
-/*
 document.addEventListener('keypress', function(e) {
     handleInput(e.key);
 });
-*/
