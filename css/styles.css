@@ -74,6 +74,17 @@ img.icon {
     outline-color: #c7c7c7;
 }
 
+span.minimize::after {
+    display: inline-block;
+    content: "";
+    height: 5px;
+    width: 14px;
+    background-color: white;
+    position: relative;
+    left: 3px;
+    top: 8px;
+}
+
 span.exit {
     background-color: red;
 }
