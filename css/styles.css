@@ -85,6 +85,19 @@ span.minimize::after {
     top: 8px;
 }
 
+span.maximize::after {
+    display: inline-block;
+    content: "";
+    height: 12px;
+    width: 12px;
+    border-style: solid;
+    border-color: white;
+    border-width: 4px 2px 2px 2px;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
 span.exit {
     background-color: red;
 }
