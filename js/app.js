@@ -63,6 +63,10 @@ function calculateResult() {
         return "ERROR: Invalid result.";
     }
 
+    if (result % 1 != 0) {
+        result.toFixed(2);
+    }
+
     firstOperand = result.toString();
     currentOperator = '';
     secondOperand = '';
@@ -70,10 +74,10 @@ function calculateResult() {
 }
 
 function addDigit(digit) {
-    if (isOperatorAssigned()) {
+    if (isOperatorAssigned() && secondOperand.length < 12) {
         secondOperand += digit;
         updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
-    } else {
+    } else if (firstOperand.length < 12) {
         firstOperand += digit;
         updateScreenDisplay(firstOperand);
     }
