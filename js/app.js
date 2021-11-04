@@ -67,6 +67,7 @@ function calculateResult() {
     let result = operate(+firstOperand, currentOperator, +secondOperand);
 
     if (!result) {
+        playErrorAudio();
         return "ERROR: Invalid result.";
     }
 
