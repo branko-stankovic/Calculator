@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll('.buttons button');
+const errorAudio = document.querySelector('audio');
 let screen = document.querySelector('.screen input');
 
 let firstOperand = '';
@@ -31,6 +32,7 @@ function operate(a, operator, b) {
             return multiply(a, b);
         case "/":
             if (b === 0) {
+                playErrorAudio();
                 alert("ERROR! Division by 0 is undefined!");
                 return undefined;
             }
@@ -54,6 +56,11 @@ function isSecondOperandAssigned() {
 
 function updateScreenDisplay(content) {
     screen.value = content;
+}
+
+function playErrorAudio() {
+    errorAudio.currentTime = 0;
+    errorAudio.play();
 }
 
 function calculateResult() {
