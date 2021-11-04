@@ -71,7 +71,7 @@ function calculateResult() {
     }
 
     if (result % 1 != 0) {
-        result.toFixed(2);
+        result = result.toFixed(2);
     }
 
     firstOperand = result.toString();
