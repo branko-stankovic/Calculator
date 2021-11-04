@@ -64,7 +64,7 @@ function calculateResult() {
         return "ERROR: Invalid result.";
     }
 
-    firstOperand = result;
+    firstOperand = result.toString();
     currentOperator = '';
     secondOperand = '';
     updateScreenDisplay(result);
@@ -98,6 +98,19 @@ function clearEverything() {
     updateScreenDisplay('0');
 }
 
+function deleteLastChar() {
+    if (isSecondOperandAssigned()) {
+        secondOperand = secondOperand.slice(0, -1);
+        updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
+    } else if (isOperatorAssigned()) {
+        currentOperator = '';
+        updateScreenDisplay(firstOperand);
+    } else if (isFirstOperandAssigned()) {
+        firstOperand = firstOperand.slice(0, -1) || '0';
+        updateScreenDisplay(firstOperand);
+    }
+}
+
 function handleInput(input) {
     if (input == "Enter" || input == "=") {
         if (isFirstOperandAssigned() && isSecondOperandAssigned() && isOperatorAssigned()) {
@@ -112,13 +125,7 @@ function handleInput(input) {
     } else if (input == "CE") {
         clearEverything();
     } else if (input == "Backspace") {
-        if (!currentOperator && firstOperand) {
-            firstOperand = firstOperand.slice(0, -1);
-            screen.value = firstOperand;
-        } else if (secondOperand) {
-            secondOperand = secondOperand.slice(0, -1);
-            screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
-        }
+        deleteLastChar();
     }// else if (input == ".") {
     //     if (!currentOperator && firstOperand && !firstOperand.includes(input)) {
     //         firstOperand += input;
