@@ -40,20 +40,41 @@ function operate(a, operator, b) {
     }
 }
 
+function isOperatorAssigned() {
+    return Boolean(currentOperator);
+}
+
+function isFirstOperandAssigned() {
+    return Boolean(firstOperand);
+}
+
+function isSecondOperandAssigned() {
+    return Boolean(secondOperand);
+}
+
+function updateScreenDisplay(content) {
+    screen.value = content;
+}
+
+function calculateResult() {
+    let result = operate(+firstOperand, currentOperator, +secondOperand);
+
+    if (!result) {
+        return "ERROR: Invalid result.";
+    }
+
+    firstOperand = result;
+    currentOperator = '';
+    secondOperand = '';
+    updateScreenDisplay(result);
+}
+
 function handleInput(input) {
     if (input == "Enter" || input == "=") {
-        if (firstOperand && secondOperand && currentOperator) {
-            let result = operate(+firstOperand, currentOperator, +secondOperand);
-            if (!result) {
-                console.log("ERROR");
-                return;
-            }
-            firstOperand = result;
-            screen.value = result;
-            currentOperator = undefined;
-            secondOperand = '';
+        if (isFirstOperandAssigned() && isSecondOperandAssigned() && isOperatorAssigned()) {
+            calculateResult();
         } else {
-            return;
+            return "Enter both values and an operator to calculate the results.";
         }
     } else if (/[0-9]/.test(input)) {
         if (!currentOperator) {
