@@ -70,6 +70,16 @@ function calculateResult() {
     updateScreenDisplay(result);
 }
 
+function addDigit(digit) {
+    if (isOperatorAssigned()) {
+        secondOperand += digit;
+        updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
+    } else {
+        firstOperand += digit;
+        updateScreenDisplay(firstOperand);
+    }
+}
+
 function handleInput(input) {
     if (input == "Enter" || input == "=") {
         if (isFirstOperandAssigned() && isSecondOperandAssigned() && isOperatorAssigned()) {
@@ -78,13 +88,7 @@ function handleInput(input) {
             console.log("Enter both values and an operator to calculate the results.");
         }
     } else if (/[0-9]/.test(input)) {
-        if (!currentOperator) {
-            firstOperand += input;
-            screen.value = firstOperand;
-        } else {
-            secondOperand += input;
-            screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
-        }
+        addDigit(input);
     } else if (/[+-/*]/.test(input) && firstOperand) {
         currentOperator = input;
         screen.value = firstOperand + " " + currentOperator;
