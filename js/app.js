@@ -4,7 +4,6 @@ let screen = document.querySelector('.screen input');
 let firstOperand = '';
 let secondOperand = '';
 let currentOperator = '';
-let decimal = false;
 
 function add(a, b) {
     return a + b;
@@ -111,6 +110,24 @@ function deleteLastChar() {
     }
 }
 
+function insertFloatingPoint() {
+    if (isOperatorAssigned() && !secondOperand.includes('.')) {
+        if (isSecondOperandAssigned()) {
+            secondOperand += '.';
+        } else {
+            secondOperand += '0.';
+        }
+        updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
+    } else {
+        if (isFirstOperandAssigned() && !firstOperand.includes('.')) {
+            firstOperand += '.';
+        } else {
+            firstOperand += '0.';
+        }
+        updateScreenDisplay(firstOperand);
+    }
+}
+
 function handleInput(input) {
     if (input == "Enter" || input == "=") {
         if (isFirstOperandAssigned() && isSecondOperandAssigned() && isOperatorAssigned()) {
@@ -120,21 +137,15 @@ function handleInput(input) {
         }
     } else if (/[0-9]/.test(input)) {
         addDigit(input);
-    } else if (/[+-/*]/.test(input)) {
+    } else if (/[+\-/*]/.test(input)) {
         addOperator(input);
     } else if (input == "CE") {
         clearEverything();
     } else if (input == "Backspace") {
         deleteLastChar();
-    }// else if (input == ".") {
-    //     if (!currentOperator && firstOperand && !firstOperand.includes(input)) {
-    //         firstOperand += input;
-    //         screen.value = firstOperand;
-    //     } else if (secondOperand && !secondOperand.includes(input)) {
-    //         secondOperand += input;
-    //         screen.value = firstOperand + " " + currentOperator + " " + secondOperand;
-    //     }
-    // }
+    } else if (input == ".") {
+        insertFloatingPoint();
+    }
 }
 
 buttons.forEach(button => button.addEventListener('click', function(e) {
