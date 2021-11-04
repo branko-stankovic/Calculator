@@ -32,6 +32,7 @@ function operate(a, operator, b) {
             return multiply(a, b);
         case "/":
             if (b === 0) {
+                alert("ERROR! Division by 0 is undefined!");
                 return undefined;
             }
             return divide(a, b);
@@ -74,7 +75,7 @@ function handleInput(input) {
         if (isFirstOperandAssigned() && isSecondOperandAssigned() && isOperatorAssigned()) {
             calculateResult();
         } else {
-            return "Enter both values and an operator to calculate the results.";
+            console.log("Enter both values and an operator to calculate the results.");
         }
     } else if (/[0-9]/.test(input)) {
         if (!currentOperator) {
