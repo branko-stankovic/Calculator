@@ -159,6 +159,6 @@ buttons.forEach(button => button.addEventListener('click', function(e) {
     handleInput(e.target.innerText);
 }));
 
-document.addEventListener('keypress', function(e) {
+document.addEventListener('keydown', function(e) {
     handleInput(e.key);
 });
