@@ -80,6 +80,24 @@ function addDigit(digit) {
     }
 }
 
+function addOperator(operator) {
+    if (isFirstOperandAssigned() && isOperatorAssigned() && isSecondOperandAssigned()) {
+        calculateResult();
+        currentOperator = operator;
+        updateScreenDisplay(firstOperand + " " + currentOperator);
+    } else if (isFirstOperandAssigned()) {
+        currentOperator = operator;
+        updateScreenDisplay(firstOperand + " " + currentOperator);
+    }
+}
+
+function clearEverything() {
+    firstOperand = '';
+    currentOperator = '';
+    secondOperand = '';
+    updateScreenDisplay('0');
+}
+
 function handleInput(input) {
     if (input == "Enter" || input == "=") {
         if (isFirstOperandAssigned() && isSecondOperandAssigned() && isOperatorAssigned()) {
@@ -89,14 +107,10 @@ function handleInput(input) {
         }
     } else if (/[0-9]/.test(input)) {
         addDigit(input);
-    } else if (/[+-/*]/.test(input) && firstOperand) {
-        currentOperator = input;
-        screen.value = firstOperand + " " + currentOperator;
+    } else if (/[+-/*]/.test(input)) {
+        addOperator(input);
     } else if (input == "CE") {
-        firstOperand = '';
-        secondOperand = '';
-        currentOperator = '';
-        screen.value = '0';
+        clearEverything();
     } else if (input == "Backspace") {
         if (!currentOperator && firstOperand) {
             firstOperand = firstOperand.slice(0, -1);
