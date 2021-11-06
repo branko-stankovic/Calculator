@@ -191,3 +191,7 @@ button {
 #backspace, #ce, #divide, #multiply, #minus, #plus, #equals {
     color: red;
 }
+
+.invisible {
+    display: none;
+}

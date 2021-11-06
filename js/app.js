@@ -1,6 +1,8 @@
 const buttons = document.querySelectorAll('.buttons button');
 const errorAudio = document.querySelector('audio');
 let screen = document.querySelector('.screen input');
+const exitButton = document.querySelector('.exit');
+const calculator = document.querySelector('.calculator');
 
 let firstOperand = '';
 let secondOperand = '';
@@ -125,10 +127,10 @@ function insertFloatingPoint() {
             secondOperand += '0.';
         }
         updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
-    } else {
+    } else if (!isOperatorAssigned()) {
         if (isFirstOperandAssigned() && !firstOperand.includes('.')) {
             firstOperand += '.';
-        } else {
+        } else if (!isFirstOperandAssigned()) {
             firstOperand += '0.';
         }
         updateScreenDisplay(firstOperand);
@@ -161,4 +163,8 @@ buttons.forEach(button => button.addEventListener('click', function(e) {
 
 document.addEventListener('keydown', function(e) {
     handleInput(e.key);
+});
+
+exitButton.addEventListener('click', function() {
+    calculator.classList.add('invisible');
 });
