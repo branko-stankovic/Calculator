@@ -2,6 +2,7 @@ const buttons = document.querySelectorAll('.buttons button');
 const errorAudio = document.querySelector('audio');
 let screen = document.querySelector('.screen input');
 const exitButton = document.querySelector('.exit');
+const minimizeButton = document.querySelector('.minimize');
 const calculator = document.querySelector('.calculator');
 
 let firstOperand = '';
@@ -167,4 +168,10 @@ document.addEventListener('keydown', function(e) {
 
 exitButton.addEventListener('click', function() {
     calculator.classList.add('invisible');
+});
+
+minimizeButton.addEventListener('click', function() {
+    if (!calculator.classList.contains('minimized')) {
+        calculator.classList.add('minimized');
+    }
 });
