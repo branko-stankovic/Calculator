@@ -12,6 +12,11 @@ let secondOperand = '';
 let currentOperator = '';
 let mouseDown = false;
 
+let mouseDownCoords = {
+    x: 0,
+    y: 0
+}
+
 function add(a, b) {
     return a + b;
 }
@@ -187,6 +192,29 @@ maximizeButton.addEventListener('click', function() {
     }
 });
 
-titleBar.addEventListener('mousedown', function() {
-    console.log('mouse down');
+titleBar.addEventListener('mousedown', function(e) {
+    if (e.target.classList != "minimize" &&
+        e.target.classList != "maximize" &&
+        e.target.classList != "exit") {
+            mouseDown = true;
+            mouseDownCoords.x = e.clientX;
+            mouseDownCoords.y = e.clientY;
+            console.log(mouseDownCoords.x, mouseDownCoords.y);
+        }
+});
+
+titleBar.addEventListener('mouseup', function() {
+    mouseDown = false;
+    mouseDownCoords.x = 0;
+    mouseDownCoords.y = 0;
+});
+
+titleBar.addEventListener('mouseleave', function() {
+    mouseDown = false;
+});
+
+titleBar.addEventListener('mousemove', function(e) {
+    if (mouseDown) {
+        calculator.style.transform = `translate(${e.clientX - mouseDownCoords.x}px,${e.clientY - mouseDownCoords.y}px)`;
+    }
 });
