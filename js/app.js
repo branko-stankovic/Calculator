@@ -3,6 +3,7 @@ const errorAudio = document.querySelector('audio');
 let screen = document.querySelector('.screen input');
 const exitButton = document.querySelector('.exit');
 const minimizeButton = document.querySelector('.minimize');
+const maximizeButton = document.querySelector('.maximize');
 const calculator = document.querySelector('.calculator');
 
 let firstOperand = '';
@@ -173,5 +174,11 @@ exitButton.addEventListener('click', function() {
 minimizeButton.addEventListener('click', function() {
     if (!calculator.classList.contains('minimized')) {
         calculator.classList.add('minimized');
+    }
+});
+
+maximizeButton.addEventListener('click', function() {
+    if (calculator.classList.contains('minimized')) {
+        calculator.classList.remove('minimized');
     }
 });
