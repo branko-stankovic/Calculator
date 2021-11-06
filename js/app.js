@@ -150,7 +150,7 @@ function handleInput(input) {
         addDigit(input);
     } else if (/[+\-/*]/.test(input)) {
         addOperator(input);
-    } else if (input == "CE") {
+    } else if (input == "CE" || input == "Delete") {
         clearEverything();
     } else if (input == "Backspace") {
         deleteLastChar();
@@ -164,7 +164,9 @@ buttons.forEach(button => button.addEventListener('click', function(e) {
 }));
 
 document.addEventListener('keydown', function(e) {
-    handleInput(e.key);
+    if (/\d|[+\-/*=.]|Enter|Backspace|Delete/.test(e.key)) {
+        handleInput(e.key);
+    }
 });
 
 exitButton.addEventListener('click', function() {
