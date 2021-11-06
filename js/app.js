@@ -5,10 +5,12 @@ const exitButton = document.querySelector('.exit');
 const minimizeButton = document.querySelector('.minimize');
 const maximizeButton = document.querySelector('.maximize');
 const calculator = document.querySelector('.calculator');
+const titleBar = document.querySelector('.titleBar');
 
 let firstOperand = '';
 let secondOperand = '';
 let currentOperator = '';
+let mouseDown = false;
 
 function add(a, b) {
     return a + b;
@@ -164,7 +166,7 @@ buttons.forEach(button => button.addEventListener('click', function(e) {
 }));
 
 document.addEventListener('keydown', function(e) {
-    if (/\d|[+\-/*=.]|Enter|Backspace|Delete/.test(e.key)) {
+    if (/^[0-9]|[+\-/*=.]|Enter|Backspace|Delete/.test(e.key)) {
         handleInput(e.key);
     }
 });
@@ -183,4 +185,8 @@ maximizeButton.addEventListener('click', function() {
     if (calculator.classList.contains('minimized')) {
         calculator.classList.remove('minimized');
     }
+});
+
+titleBar.addEventListener('mousedown', function() {
+    console.log('mouse down');
 });
