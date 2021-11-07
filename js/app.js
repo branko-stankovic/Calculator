@@ -17,6 +17,11 @@ let mouseDownCoords = {
     y: 0
 }
 
+let previousOffset = {
+    x: 0,
+    y: 0
+}
+
 function add(a, b) {
     return a + b;
 }
@@ -199,22 +204,24 @@ titleBar.addEventListener('mousedown', function(e) {
             mouseDown = true;
             mouseDownCoords.x = e.clientX;
             mouseDownCoords.y = e.clientY;
-            console.log(mouseDownCoords.x, mouseDownCoords.y);
         }
 });
 
-titleBar.addEventListener('mouseup', function() {
+titleBar.addEventListener('mouseup', function(e) {
     mouseDown = false;
-    mouseDownCoords.x = 0;
-    mouseDownCoords.y = 0;
+    previousOffset.x = parseInt(calculator.style.left);
+    previousOffset.y = parseInt(calculator.style.top);
 });
 
-titleBar.addEventListener('mouseleave', function() {
+titleBar.addEventListener('mouseleave', function(e) {
     mouseDown = false;
+    previousOffset.x = parseInt(calculator.style.left);
+    previousOffset.y = parseInt(calculator.style.top);
 });
 
 titleBar.addEventListener('mousemove', function(e) {
     if (mouseDown) {
-        calculator.style.transform = `translate(${e.clientX - mouseDownCoords.x}px,${e.clientY - mouseDownCoords.y}px)`;
+        calculator.style.top = `${previousOffset.y + e.clientY - mouseDownCoords.y}px`;
+        calculator.style.left = `${previousOffset.x + e.clientX - mouseDownCoords.x}px`;
     }
 });
