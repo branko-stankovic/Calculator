@@ -83,7 +83,7 @@ function calculateResult() {
     let result = operate(+firstOperand, currentOperator, +secondOperand);
 
     if (result % 1 != 0) {
-        result = result.toFixed(2);
+        result = parseFloat(result.toFixed(6));
     }
 
     firstOperand = result.toString();
