@@ -203,6 +203,7 @@ button {
     display: none;
 }
 
+/* override positioning set by drag n drop */
 .minimized {
     height: 42px;
     overflow: hidden;
