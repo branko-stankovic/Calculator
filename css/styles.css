@@ -195,7 +195,7 @@ button {
     font-size: inherit;
 }
 
-#backspace, #ce, #divide, #multiply, #minus, #plus, #equals {
+.red-text {
     color: red;
 }
 
