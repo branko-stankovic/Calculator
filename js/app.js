@@ -87,11 +87,13 @@ function calculateResult() {
     // convert strings to numbers when calculating
     let result = operate(+firstOperand, currentOperator, +secondOperand);
 
-    // if there's a decimal part, limit the length and remove trailing zeroes if any
+    // if there's a decimal part
     if (result % 1 != 0) {
+        // limit the length and remove trailing zeroes if any
         result = parseFloat(result.toFixed(MAX_DECIMAL_LENGTH));
     }
 
+    // reset values after performing calculation
     firstOperand = '';
     currentOperator = '';
     secondOperand = '';
@@ -99,14 +101,19 @@ function calculateResult() {
 }
 
 function addDigit(digit) {
-    if (!isFirstOperandAssigned() && screen.value !== '0') {
+    if (isOperatorAssigned() && secondOperand.length <= MAX_INPUT_LENGTH) {
+        // if operator is already assigned, then  we add to the second digit
+        // if there is space left on the screen
+        secondOperand += digit;
+        updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
+    } else if (!isFirstOperandAssigned() && screen.value !== '0') {
+        // if user has performed a calculation already and enters a new digit
+        // start a new calculation
         screen.value = '';
         firstOperand += digit;
         updateScreenDisplay(firstOperand);
-    } else if (isOperatorAssigned() && secondOperand.length <= MAX_INPUT_LENGTH) {
-        secondOperand += digit;
-        updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
     } else if (firstOperand.length <= MAX_INPUT_LENGTH) {
+        // otherwise, add input to the first operand
         firstOperand += digit;
         updateScreenDisplay(firstOperand);
     }
@@ -114,15 +121,20 @@ function addDigit(digit) {
 
 function addOperator(operator) {
     if (!isFirstOperandAssigned() && screen.value !== '0') {
+        // if the user clicks on operator and there are previous results on the screen left
+        // pick up the results as first operand, and keep on calculating
         firstOperand = screen.value;
         currentOperator = operator;
         updateScreenDisplay(firstOperand + " " + currentOperator);
     } else if (isFirstOperandAssigned() && isOperatorAssigned() && isSecondOperandAssigned()) {
+        // if both operators and operand are already in and the user clicks another operand
+        // calculate the results into first operand and set operator input to current
         calculateResult();
         firstOperand = screen.value;
         currentOperator = operator;
         updateScreenDisplay(firstOperand + " " + currentOperator);
     } else if (isFirstOperandAssigned()) {
+        // if we're done with the first operand, set the operator to current
         currentOperator = operator;
         updateScreenDisplay(firstOperand + " " + currentOperator);
     }
@@ -143,6 +155,7 @@ function deleteLastChar() {
         currentOperator = '';
         updateScreenDisplay(firstOperand);
     } else if (isFirstOperandAssigned()) {
+        // if we delete the only digit left on the screen, set screen to '0'
         firstOperand = firstOperand.slice(0, -1) || '0';
         updateScreenDisplay(firstOperand);
     }
