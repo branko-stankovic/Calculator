@@ -140,7 +140,7 @@ span.exit::after {
 
 .menu span {
     padding: 0 5px;
-    cursor: pointer;
+    cursor: default;
 }
 
 .screen {
