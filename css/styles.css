@@ -207,6 +207,6 @@ button {
     height: 42px;
     overflow: hidden;
     position: absolute;
-    top: calc(100vh - 42px);
-    left: 0;
+    top: calc(100vh - 42px) !important;
+    left: 0 !important;
 }
