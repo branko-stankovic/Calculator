@@ -33,7 +33,11 @@ body {
     padding: 3px;
     display: flex;
     justify-content: space-between;
-    cursor: default;
+    cursor: grab;
+}
+
+.titleBar:active {
+    cursor: grabbing;
 }
 
 .title {
@@ -62,6 +66,7 @@ img.icon {
     background-color: #004f98;
     outline: 2px solid #034583;
     border-radius: 3px;
+    cursor: default;
 }
 
 .icons span:hover {
