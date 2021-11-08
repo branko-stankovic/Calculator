@@ -92,14 +92,18 @@ function calculateResult() {
         result = parseFloat(result.toFixed(MAX_DECIMAL_LENGTH));
     }
 
-    firstOperand = result.toString();
+    firstOperand = '';
     currentOperator = '';
     secondOperand = '';
     updateScreenDisplay(result);
 }
 
 function addDigit(digit) {
-    if (isOperatorAssigned() && secondOperand.length <= MAX_INPUT_LENGTH) {
+    if (!isFirstOperandAssigned() && screen.value !== '0') {
+        screen.value = '';
+        firstOperand += digit;
+        updateScreenDisplay(firstOperand);
+    } else if (isOperatorAssigned() && secondOperand.length <= MAX_INPUT_LENGTH) {
         secondOperand += digit;
         updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
     } else if (firstOperand.length <= MAX_INPUT_LENGTH) {
@@ -109,8 +113,13 @@ function addDigit(digit) {
 }
 
 function addOperator(operator) {
-    if (isFirstOperandAssigned() && isOperatorAssigned() && isSecondOperandAssigned()) {
+    if (!isFirstOperandAssigned() && screen.value !== '0') {
+        firstOperand = screen.value;
+        currentOperator = operator;
+        updateScreenDisplay(firstOperand + " " + currentOperator);
+    } else if (isFirstOperandAssigned() && isOperatorAssigned() && isSecondOperandAssigned()) {
         calculateResult();
+        firstOperand = screen.value;
         currentOperator = operator;
         updateScreenDisplay(firstOperand + " " + currentOperator);
     } else if (isFirstOperandAssigned()) {
@@ -191,6 +200,7 @@ buttons.forEach(button => button.addEventListener('click', function(e) {
 }));
 
 document.addEventListener('keydown', function(e) {
+    // filter keyboard input before passing to the calculator
     if (/^[0-9]|[+\-/*=.]|Enter|Backspace|Delete/.test(e.key)) {
         handleInput(e.key);
     }
