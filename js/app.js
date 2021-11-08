@@ -103,7 +103,6 @@ function calculateResult() {
 function addDigit(digit) {
     if (isOperatorAssigned() && secondOperand.length <= MAX_INPUT_LENGTH) {
         // if operator is already assigned, then  we add to the second digit
-        // if there is space left on the screen
         secondOperand += digit;
         updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
     } else if (!isFirstOperandAssigned() && screen.value !== '0') {
