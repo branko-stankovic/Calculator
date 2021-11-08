@@ -1,23 +1,27 @@
 const buttons = document.querySelectorAll('.buttons button');
 const errorAudio = document.querySelector('audio');
-let screen = document.querySelector('.screen input');
 const exitButton = document.querySelector('.exit');
 const minimizeButton = document.querySelector('.minimize');
 const maximizeButton = document.querySelector('.maximize');
 const calculator = document.querySelector('.calculator');
 const titleBar = document.querySelector('.titleBar');
+let screen = document.querySelector('.screen input');
+
+const MAX_DECIMAL_LENGTH = 6;
+const MAX_INPUT_LENGTH = 12;
 
 let firstOperand = '';
 let secondOperand = '';
 let currentOperator = '';
-let mouseDown = false;
+let isMouseClickDown = false;
 
-let mouseDownCoords = {
+// starting point for drag n drop
+let mouseClickedCoords = {
     x: 0,
     y: 0
 }
 
-let previousOffset = {
+let previousCalculatorOffset = {
     x: 0,
     y: 0
 }
@@ -80,10 +84,12 @@ function playErrorAudio() {
 }
 
 function calculateResult() {
+    // convert strings to numbers when calculating
     let result = operate(+firstOperand, currentOperator, +secondOperand);
 
+    // if there's a decimal part, limit the length and remove trailing zeroes if any
     if (result % 1 != 0) {
-        result = parseFloat(result.toFixed(6));
+        result = parseFloat(result.toFixed(MAX_DECIMAL_LENGTH));
     }
 
     firstOperand = result.toString();
@@ -93,10 +99,10 @@ function calculateResult() {
 }
 
 function addDigit(digit) {
-    if (isOperatorAssigned() && secondOperand.length < 12) {
+    if (isOperatorAssigned() && secondOperand.length <= MAX_INPUT_LENGTH) {
         secondOperand += digit;
         updateScreenDisplay(firstOperand + " " + currentOperator + " " + secondOperand);
-    } else if (firstOperand.length < 12) {
+    } else if (firstOperand.length <= MAX_INPUT_LENGTH) {
         firstOperand += digit;
         updateScreenDisplay(firstOperand);
     }
@@ -171,6 +177,15 @@ function handleInput(input) {
     }
 }
 
+// stop moving the calculator, remember its position for the next drag
+function rememberCalculatorPosition() {
+    if (isMouseClickDown) {
+        isMouseClickDown = false;
+        previousCalculatorOffset.x = parseInt(calculator.style.left);
+        previousCalculatorOffset.y = parseInt(calculator.style.top);
+    }
+}
+
 buttons.forEach(button => button.addEventListener('click', function(e) {
     handleInput(e.target.innerText);
 }));
@@ -201,27 +216,19 @@ titleBar.addEventListener('mousedown', function(e) {
     if (e.target.classList != "minimize" &&
         e.target.classList != "maximize" &&
         e.target.classList != "exit") {
-            mouseDown = true;
-            mouseDownCoords.x = e.clientX;
-            mouseDownCoords.y = e.clientY;
+            isMouseClickDown = true;
+            mouseClickedCoords.x = e.clientX;
+            mouseClickedCoords.y = e.clientY;
         }
 });
 
-titleBar.addEventListener('mouseup', function(e) {
-    mouseDown = false;
-    previousOffset.x = parseInt(calculator.style.left);
-    previousOffset.y = parseInt(calculator.style.top);
-});
+titleBar.addEventListener('mouseup', rememberCalculatorPosition);
 
-titleBar.addEventListener('mouseleave', function(e) {
-    mouseDown = false;
-    previousOffset.x = parseInt(calculator.style.left);
-    previousOffset.y = parseInt(calculator.style.top);
-});
+titleBar.addEventListener('mouseleave', rememberCalculatorPosition);
 
 titleBar.addEventListener('mousemove', function(e) {
-    if (mouseDown) {
-        calculator.style.top = `${previousOffset.y + e.clientY - mouseDownCoords.y}px`;
-        calculator.style.left = `${previousOffset.x + e.clientX - mouseDownCoords.x}px`;
+    if (isMouseClickDown) {
+        calculator.style.top = `${previousCalculatorOffset.y + e.clientY - mouseClickedCoords.y}px`;
+        calculator.style.left = `${previousCalculatorOffset.x + e.clientX - mouseClickedCoords.x}px`;
     }
 });
